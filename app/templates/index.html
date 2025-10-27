@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Agent Builder{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Welcome to Agent Builder</h1>
+    <p>This is a Flask web application built with Python and Poetry.</p>
+
+    <div class="api-demo">
+        <h2>API Demo</h2>
+        <input type="text" id="nameInput" placeholder="Enter your name">
+        <button onclick="callAPI()">Say Hello</button>
+        <div id="apiResponse"></div>
+    </div>
+</div>
+
+<script>
+    async function callAPI() {
+        const name = document.getElementById('nameInput').value;
+        const response = await fetch('/api/hello', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name: name })
+        });
+        const data = await response.json();
+        document.getElementById('apiResponse').innerHTML = `<p>${data.message}</p>`;
+    }
+</script>
+{% endblock %}
