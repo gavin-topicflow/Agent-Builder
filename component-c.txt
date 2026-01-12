@@ -1,0 +1,3 @@
+Refactored Component C
+
+Much cleaner now.
